@@ -1,14 +1,16 @@
 #include "pch.h"
 #include <iostream>
 #include <string>
+#include "FBullAndCowsGame.h"
 
 constexpr int WORD_LENGTH = 5;
-constexpr int GAME_LENGHT = 3;
 
 void PrintIntro();
 void PlayGame();
 std::string GetGuess();
 bool ShouldPlayAgain();
+
+FBullAndCowsGame BCGame;
 
 int main()
 {
@@ -34,7 +36,9 @@ void PrintIntro()
 
 void PlayGame()
 {
-	for (int count = 1; count <= GAME_LENGHT; count++)
+	int maxTries = BCGame.GetMaxTry();
+
+	for (int count = 1; count <= maxTries; count++)
 	{
 		std::string guess = GetGuess();
 		std::cout << "You guess is '" << guess << "'" << std::endl;
@@ -43,9 +47,10 @@ void PlayGame()
 
 std::string GetGuess()
 {
+	int currentTry = BCGame.GetCurrentTry();
 	std::string guess;
 
-	std::cout << "Enter your guess: " << std::endl;
+	std::cout << "Try #" << currentTry << ". Enter your guess: " << std::endl;
 	std::getline(std::cin, guess);
 	std::cout << std::endl;
 	return guess;

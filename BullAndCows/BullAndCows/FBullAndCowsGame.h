@@ -4,13 +4,14 @@
 class FBullAndCowsGame
 {
 public:
+	int GetMaxTry() const;
+	int GetCurrentTry() const;
+	bool IsGameWon() const;
+
 	void Reset();
-	int GetMaxTry();
-	int GetCurrentTry();
-	bool IsGameWon();
 	bool IsGuessValid(std::string);
 
 private:
-	int MyCurrentTry;
-	int MyMaxTries;
+	int MyCurrentTry = 1;
+	int MyMaxTries = 3;
 };

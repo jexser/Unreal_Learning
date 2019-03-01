@@ -1,23 +1,13 @@
 #include "pch.h"
 #include "FBullAndCowsGame.h"
 
+
+int FBullAndCowsGame::GetMaxTry() const { return MyMaxTries; }
+int FBullAndCowsGame::GetCurrentTry() const { return MyCurrentTry; }
+bool FBullAndCowsGame::IsGameWon() const { return false; }
+
 void FBullAndCowsGame::Reset()
 {
-}
-
-int FBullAndCowsGame::GetMaxTry()
-{
-	return 0;
-}
-
-int FBullAndCowsGame::GetCurrentTry()
-{
-	return 0;
-}
-
-bool FBullAndCowsGame::IsGameWon()
-{
-	return false;
 }
 
 bool FBullAndCowsGame::IsGuessValid(std::string)
