@@ -26,3 +26,9 @@
 *.exe
 *.out
 *.app
+
+BullAndCows/Debug/
+
+BullAndCows/\.vs/
+
+BullAndCows/BullAndCows/Debug/
