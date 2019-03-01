@@ -4,6 +4,8 @@
 class FBullAndCowsGame
 {
 public:
+	FBullAndCowsGame();
+
 	int GetMaxTry() const;
 	int GetCurrentTry() const;
 	bool IsGameWon() const;
