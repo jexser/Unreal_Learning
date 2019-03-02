@@ -3,11 +3,14 @@
 #include <string>
 #include "FBullAndCowsGame.h"
 
-constexpr int WORD_LENGTH = 5;
+using FText = std::string;
+using int32 = int;
+
+constexpr int32 WORD_LENGTH = 5;
 
 void PrintIntro();
 void PlayGame();
-std::string GetGuess();
+FText GetGuess();
 bool ShouldPlayAgain();
 
 FBullAndCowsGame BCGame;
@@ -37,19 +40,20 @@ void PrintIntro()
 void PlayGame()
 {
 	BCGame.Reset();
-	int maxTries = BCGame.GetMaxTry();
+	int32 maxTries = BCGame.GetMaxTry();
 
-	for (int count = 1; count <= maxTries; count++)
+	for (int32 count = 1; count <= maxTries; count++)
 	{
-		std::string guess = GetGuess();
-		std::cout << "You guess is '" << guess << "'" << std::endl;
+		FText guess = GetGuess();
+		std::cout << "You guess is '" << guess << "'" << std::endl
+			<< std::endl;
 	}
 }
 
-std::string GetGuess()
+FText GetGuess()
 {
-	int currentTry = BCGame.GetCurrentTry();
-	std::string guess;
+	int32 currentTry = BCGame.GetCurrentTry();
+	FText guess;
 
 	std::cout << "Try #" << currentTry << ". Enter your guess: " << std::endl;
 	std::getline(std::cin, guess);
@@ -59,7 +63,7 @@ std::string GetGuess()
 
 bool ShouldPlayAgain()
 {
-	std::string response;
+	FText response;
 
 	std::cout << "Would you like to play again?" << std::endl;
 	getline(std::cin, response);
