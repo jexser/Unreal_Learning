@@ -6,8 +6,6 @@
 using FText = std::string;
 using int32 = int;
 
-constexpr int32 WORD_LENGTH = 5;
-
 void PrintIntro();
 void PlayGame();
 FText GetGuess();
@@ -33,7 +31,7 @@ void PrintIntro()
 		<< "--- Designed by Jexser" << std::endl
 		<< "--- Game description here" << std::endl
 		<< std::endl
-		<< "Can you guess the " << WORD_LENGTH << " letters isogram that I guessed?"<< std::endl
+		<< "Can you guess the " << BCGame.GetHiddenWordLenght() << " letters isogram that I guessed?" << std::endl
 		<< std::endl;
 }
 
@@ -45,8 +43,10 @@ void PlayGame()
 	for (int32 count = 1; count <= maxTries; count++)
 	{
 		FText guess = GetGuess();
-		std::cout << "You guess is '" << guess << "'" << std::endl
-			<< std::endl;
+		FBullCowCount bullCowCount = BCGame.SubmitGuess(guess);
+
+		std::cout << "Bulls: " << bullCowCount.Bulls;
+		std::cout << "; Cows: " << bullCowCount.Cows << std::endl;
 	}
 }
 

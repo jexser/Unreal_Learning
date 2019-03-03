@@ -11,6 +11,7 @@ FBullAndCowsGame::FBullAndCowsGame()
 
 int32 FBullAndCowsGame::GetMaxTry() const { return MyMaxTries; }
 int32 FBullAndCowsGame::GetCurrentTry() const { return MyCurrentTry; }
+int32 FBullAndCowsGame::GetHiddenWordLenght() const { return MyHiddenWord.length(); }
 bool FBullAndCowsGame::IsGameWon() const { return false; }
 
 void FBullAndCowsGame::Reset()
@@ -29,10 +30,28 @@ bool FBullAndCowsGame::IsGuessValid(FString)
 	return false;
 }
 
-BullCowCount FBullAndCowsGame::SubmitGuess(FString)
+FBullCowCount FBullAndCowsGame::SubmitGuess(FString guess)
 {
 	MyCurrentTry++;
-	BullCowCount bullCowCount;
+	FBullCowCount bullCowCount;
+
+	for (int32 word1 = 0; word1 < GetHiddenWordLenght(); word1++)
+	{
+		for (int32 word2 = 0; word2 < GetHiddenWordLenght(); word2++)
+		{
+			if (guess[word1] == MyHiddenWord[word2])
+			{
+				if (word1 == word2)
+				{
+					bullCowCount.Bulls++;
+				}
+				else
+				{
+					bullCowCount.Cows++;
+				}
+			}
+		}
+	}
 
 	return bullCowCount;
 }

@@ -4,7 +4,7 @@
 using FString = std::string;
 using int32 = int;
 
-struct BullCowCount
+struct FBullCowCount
 {
 	int32 Bulls = 0;
 	int32 Cows = 0;
@@ -17,11 +17,12 @@ public:
 
 	int32 GetMaxTry() const;
 	int32 GetCurrentTry() const;
+	int32 GetHiddenWordLenght() const;
 	bool IsGameWon() const;
+	bool IsGuessValid(FString);
 
 	void Reset();
-	bool IsGuessValid(FString);
-	BullCowCount SubmitGuess(FString);
+	FBullCowCount SubmitGuess(FString guess);
 
 private:
 	int32 MyCurrentTry;
