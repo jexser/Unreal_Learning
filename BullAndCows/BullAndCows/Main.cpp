@@ -1,3 +1,5 @@
+#pragma once
+
 #include "pch.h"
 #include <iostream>
 #include <string>
@@ -10,6 +12,7 @@ void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
 bool ShouldPlayAgain();
+void PrintGameSummary();
 
 FBullAndCowsGame BCGame;
 
@@ -39,7 +42,7 @@ void PlayGame()
 {
 	BCGame.Reset();
 
-	while(!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= BCGame.GetMaxTry())
+	while(!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= BCGame.GetMaxTries())
 	{
 		FText guess = GetValidGuess();
 
@@ -48,6 +51,9 @@ void PlayGame()
 		std::cout << "Bulls: " << bullCowCount.Bulls;
 		std::cout << "; Cows: " << bullCowCount.Cows << std::endl;
 	}
+
+	PrintGameSummary();
+	return;
 }
 
 FText GetValidGuess()
@@ -58,7 +64,7 @@ FText GetValidGuess()
 
 	do
 	{
-		std::cout << "Try #" << currentTry << ". Enter your guess: " << std::endl;
+		std::cout << "Try #" << currentTry << " of " << BCGame.GetMaxTries() << ". Enter your guess: " << std::endl;
 		std::getline(std::cin, guess);
 		std::cout << std::endl;
 
@@ -86,8 +92,20 @@ bool ShouldPlayAgain()
 {
 	FText response;
 
-	std::cout << "Would you like to play again?" << std::endl;
+	std::cout << "Would you like to play again? y/n" << std::endl;
 	getline(std::cin, response);
 	
 	return (response[0] == 'y') || (response[0] == 'Y');
+}
+
+void PrintGameSummary()
+{
+	if (BCGame.IsGameWon())
+	{
+		std::cout << "Great game! Congrats!" << std::endl;
+	}
+	else
+	{
+		std::cout << "Better luck next time ;)" << std::endl;
+	}
 }

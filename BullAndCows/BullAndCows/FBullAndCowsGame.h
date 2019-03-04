@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 
 using FString = std::string;
@@ -24,7 +25,7 @@ class FBullAndCowsGame
 public:
 	FBullAndCowsGame();
 
-	int32 GetMaxTry() const;
+	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
 	int32 GetHiddenWordLenght() const;
 	bool IsGameWon() const;
@@ -35,7 +36,8 @@ public:
 
 private:
 	int32 MyCurrentTry;
-	int32 MyMaxTries;
 	FString MyHiddenWord;
 	bool bIsGameWon;
+	bool IsIsogram(FString word) const;
+	bool IsLowerCase(FString word) const;
 };
